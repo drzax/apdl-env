@@ -146,4 +146,4 @@ mysql::db { 'silverstripe':
   require  => Class['mysql::server'],
 }
 
-
+include neo4j
