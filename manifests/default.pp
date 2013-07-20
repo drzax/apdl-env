@@ -44,12 +44,21 @@ apache::vhost { 'apdl.dev':
   server_name   => 'apdl.dev',
   serveraliases => [
 ],
-  docroot       => '/var/www/',
-  port          => '80',
-  env_variables => [
+  docroot					=> '/var/www/',
+  directory                 => '/var/www/',
+  port						=> '80',
+  directory_allow_override	=> 'All',
+  env_variables				=> [
 ],
   priority      => '1',
 }
+
+file { "/etc/apache2/sites-enabled/000-default":
+	ensure  => absent,
+	require => Package['apache'],
+	notify  => $apache::manage_service_autorestart,
+}
+
 
 class { 'php':
   service       => 'apache',
@@ -81,13 +90,13 @@ php::pecl::module { 'xhprof':
 }
 
 apache::vhost { 'xhprof':
+  enable	  => false,
   server_name => 'xhprof',
   docroot     => '/var/www/xhprof/xhprof_html',
   port        => 80,
   priority    => '1',
   require     => Php::Pecl::Module['xhprof']
 }
-
 
 class { 'xdebug':
   service => 'apache',
