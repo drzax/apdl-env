@@ -156,3 +156,10 @@ mysql::db { 'silverstripe':
 }
 
 include neo4j
+
+cron { 'ProcessJobQueueTask' : 
+  ensure => absent,
+  command => 'php /var/www/framework/cli-script.php dev/tasks/ProcessJobQueueTask queue=2',
+  user => www-data,
+  minute => '*'
+}
