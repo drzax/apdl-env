@@ -1,0 +1,100 @@
+---
+vagrantfile-digital_ocean:
+    vm:
+        box: digital_ocean
+        hostname: kindred
+        network:
+            private_network: 192.168.56.101
+            forwarded_port: {  }
+        provider:
+            digital_ocean:
+                image: 'Ubuntu 12.04 x64'
+                region: 'New York 1'
+                size: 4GB
+                client_id: notarealclientid
+                api_key: notarealapikey
+        provision:
+            puppet:
+                manifests_path: puppet/manifests
+                options:
+                    - --verbose
+                    - '--hiera_config /vagrant/hiera.yaml'
+                    - '--parser future'
+        synced_folder:
+            VguqRbeXdcok:
+                id: webroot
+                source: ./
+                target: /var/www
+    ssh:
+        host: null
+        port: null
+        private_key_path: ~/.ssh/id_rsa
+        username: notarealusername
+        guest_port: null
+        keep_alive: true
+        forward_agent: false
+        forward_x11: false
+        shell: 'bash -l'
+    vagrant:
+        host: ':detect'
+server:
+    packages: {  }
+    dot_files:
+        -
+            bash_aliases: null
+    _prevent_empty: ''
+apache:
+    modules:
+        - php
+        - rewrite
+    vhosts:
+        gmHebjzgoKkd:
+            servername: kindred.dev
+            serveraliases:
+                - www.kindred.dev
+            docroot: /var/www/htdocs
+            port: '80'
+            setenv:
+                - 'APP_ENV dev'
+            override:
+                - All
+    user: www-data
+    group: www-data
+    default_vhost: true
+    mpm_module: prefork
+php:
+    version: '54'
+    composer: '1'
+    modules:
+        php:
+            - cli
+            - intl
+            - mcrypt
+        pear: {  }
+        pecl: {  }
+    ini:
+        display_errors: On
+        error_reporting: '-1'
+    timezone: Australia/Brisbane
+xdebug:
+    install: 0
+    settings:
+        xdebug.default_enable: '1'
+        xdebug.remote_autostart: '0'
+        xdebug.remote_connect_back: '1'
+        xdebug.remote_enable: '1'
+        xdebug.remote_handler: dbgp
+        xdebug.remote_port: '9000'
+mysql:
+    root_password: notarealpassword
+    phpmyadmin: 0
+    databases:
+        P1Y1nB0mTGSm:
+            grant:
+                - ALL
+            name: notarealdatabase
+            host: notarealhost
+            user: notarealuser
+            password: notarealpassword
+            sql_file: ''
+

@@ -3,5 +3,6 @@
 :yaml:
     :datadir: '/vagrant/puppet/hieradata'
 :hierarchy:
+    - private
     - common
 :logger: console

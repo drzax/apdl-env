@@ -1,0 +1,23 @@
+---
+vagrantfile-digital_ocean:
+    vm:
+        provider:
+            digital_ocean:
+                client_id: put your client id here
+                api_key: put your api key here
+    ssh:
+        username: put the username in your public key here
+mysql:
+    root_password: define a root password
+    databases:
+        P1Y1nB0mTGSm:
+            grant:
+                - ALL
+            name: give the database a name
+            host: give the database a host
+            user: setup a database user
+            password: set the user password
+neo4j:
+    username: neo4j username
+    password: neo4j password
+
