@@ -375,3 +375,4 @@ define mysql_db (
   }
 }
 
+include neo4j::ubuntu
