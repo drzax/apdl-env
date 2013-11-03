@@ -47,17 +47,12 @@ Vagrant.configure("2") do |config|
   config.vm.provision :shell, :path => "shell/initial-setup.sh"
   config.vm.provision :shell, :path => "shell/update-puppet.sh"
   config.vm.provision :shell, :path => "shell/librarian-puppet-vagrant.sh"
-  config.vm.provision "shell" do |s|
-    s.inline = "NEO4J_USERNAME=$1"
-    s.args   = private['neo4j']['username']
-  end
-  config.vm.provision "shell" do |s|
-    s.inline = "NEO4J_PASSWORD=$1"
-    s.args   = private['neo4j']['password']
-  end
+  
   config.vm.provision :puppet do |puppet|
     puppet.facter = {
-      "ssh_username" => private['vagrantfile-digital_ocean']['ssh']['username']
+      "ssh_username" => private['vagrantfile-digital_ocean']['ssh']['username'],
+      "neo4j_username" => private['neo4j']['username'],
+      "neo4j_password" => private['neo4j']['password']
     }
 
     puppet.manifests_path = "puppet/manifests"
