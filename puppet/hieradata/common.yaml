@@ -49,9 +49,9 @@ apache:
         - rewrite
     vhosts:
         gmHebjzgoKkd:
-            servername: kindred.dev
+            servername: thekindred.co
             serveraliases:
-                - www.kindred.dev
+                - thekindred.dev
             docroot: /var/www
             port: '80'
             setenv:
