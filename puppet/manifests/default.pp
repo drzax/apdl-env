@@ -376,3 +376,12 @@ define mysql_db (
 }
 
 include neo4j::ubuntu
+
+cron { 'ProcessJobQueueTask' : 
+  ensure => present,
+  command => 'php /var/www/framework/cli-script.php dev/tasks/ProcessJobQueueTask queue=2',
+  user => www-data,
+  minute => '*',
+  require => Class['apache']
+}
+
