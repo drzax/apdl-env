@@ -52,7 +52,7 @@ apache:
             servername: kindred.dev
             serveraliases:
                 - www.kindred.dev
-            docroot: /var/www/htdocs
+            docroot: /var/www
             port: '80'
             setenv:
                 - 'APP_ENV dev'
