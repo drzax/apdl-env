@@ -1,3 +1,4 @@
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'digital_ocean'
 
 # We use YAML to load an external config file with a bunch of config that should not
 # be committed to version control.
@@ -22,6 +23,7 @@ Vagrant.configure("2") do |config|
   # Digital Ocean vagrant config
   config.vm.define "remote" do |remote|
     remote.vm.box = "digital_ocean"
+    remote.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
     remote.ssh.private_key_path = "~/.ssh/id_rsa"
     remote.ssh.username = private['vagrantfile-digital_ocean']['ssh']['username']
     remote.ssh.shell = "bash -l"
